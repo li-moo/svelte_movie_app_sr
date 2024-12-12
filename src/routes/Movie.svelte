@@ -1,22 +1,25 @@
 <script>
-  import Loader from '~/components/Loader.svelte';
-  import { searchMovieWithId, theMovie, loading } from '~/store/movie';
-  let imageLoading = true;
+  import Loader from "~/components/Loader.svelte";
+  import { searchMovieWithId, theMovie, loading } from "~/store/movie";
+  let imageLoading = true; //로딩이 끝나면 false
   export let params = {};
-  searchMovieWithId(params.id);
+  searchMovieWithId(params.id); // searchMovieWithId함수 호출
   function requestDifferentSizeImage(url, size = 700) {
-    const src = url.replace('SX300', `SX${size}`);
-    const img = document.createElement('img');
+    const src = url.replace("SX300", `SX${size}`); //SX300이미지 가로크기 300 교체
+    const img = document.createElement("img"); // 요소를 동적으로 추가 UI를 조작
+    //HTML 문서에 미리 정의되지 않은 요소를, JavaScript를 통해 동적으로 추가
+    // 왜 on:load 안썻는지..
     img.src = src;
-    img.addEventListener('load', () => {
-      imageLoading = false;
+    img.addEventListener("load", () => {
+      // 이미지가 로드되면 실행
     });
     return src;
-  }
+  } //이미지 크기 조정 함수
   console.log($theMovie.Ratings);
 </script>
 
 <div class="container">
+  <!-- $loading이 true면 -->
   {#if $loading}
     <div class="skeleton-loader">
       <div class="poster" />
@@ -30,9 +33,16 @@
       </div>
       <Loader absolute />
     </div>
+    <!-- 데이터가 로드되면 {:else} 블록 실행 -->
   {:else}
     <div class="movie-details">
-      <div style="background-image: url({requestDifferentSizeImage($theMovie.Poster)});" class="poster">
+      <!-- 이미지 URL을 requestDifferentSizeImage 함수로 변환 결과. 배경 이미지를 설정 -->
+      <div
+        style="background-image: url({requestDifferentSizeImage(
+          $theMovie.Poster,
+        )});"
+        class="poster"
+      >
         {#if imageLoading}
           <Loader scale=".7" absolute />
         {/if}
@@ -63,7 +73,11 @@
           <div class="rating-wrap">
             {#each $theMovie.Ratings as rating (rating.Source)}
               <div title={rating.Source} class="rating">
-                <img src={`/assets/${rating.Source}.png`} alt={rating.Source} height="30" />
+                <img
+                  src={`/assets/${rating.Source}.png`}
+                  alt={rating.Source}
+                  height="30"
+                />
                 <span>{rating.Value}</span>
               </div>
             {/each}
@@ -155,7 +169,7 @@
   }
   .specs {
     .title {
-      font-family: 'Oswald', sans-serif;
+      font-family: "Oswald", sans-serif;
       font-size: 70px;
       color: $color--white;
       line-height: 1;
@@ -195,7 +209,7 @@
     h3 {
       color: $color--white;
       margin: 24px 0 6px;
-      font-family: 'Oswald', sans-serif;
+      font-family: "Oswald", sans-serif;
       font-size: 20px;
     }
   }

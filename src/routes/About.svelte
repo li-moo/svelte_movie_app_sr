@@ -1,14 +1,15 @@
 <script>
-  import { querystring } from 'svelte-spa-router';
-  import qs from 'qs';
+  import { querystring } from "svelte-spa-router";
+  import qs from "qs"; // 쿼리스트링 파싱, 스트링
   $: query = qs.parse($querystring);
-  $: name = query.name || 'Heropy';
-  $: email = query.email || 'thesecon@gmail.com';
-  $: blog = query.blog || 'https://heropy.blog';
-  $: phone = query.phone || '+82-10-1234-5678';
-  $: image = query.image || 'https://heropy.blog/css/images/logo.png';
+  $: name = query.name || "Heropy"; //해당 속성 가져온 || 기본값
+  $: email = query.email || "thesecon@gmail.com";
+  $: blog = query.blog || "https://heropy.blog";
+  $: phone = query.phone || "+82-10-1234-5678";
+  $: image = query.image || "https://heropy.blog/css/images/logo.png";
 </script>
 
+<!-- user-profile 을 나타냄 -->
 <div class="user-profile">
   <div class="photos">
     <div class="photo">
@@ -19,6 +20,7 @@
     </div>
   </div>
   <div class="details">
+    <!-- 라우터 prameter -->
     <div class="name">{name}</div>
     <div class="email">{email}</div>
     <div class="blog">{blog}</div>
@@ -54,7 +56,7 @@
       text-align: center;
       .name {
         font-size: 40px;
-        font-family: 'Oswald', sans-serif;
+        font-family: "Oswald", sans-serif;
         margin-bottom: 20px;
       }
     }

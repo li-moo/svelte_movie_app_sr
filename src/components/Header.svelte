@@ -1,12 +1,13 @@
 <script>
-  import { link, push } from 'svelte-spa-router';
-  import active from 'svelte-spa-router/active';
-  import Logo from '~/components/Logo.svelte';
+  import { link, push } from "svelte-spa-router"; // push: URL을 변경(페이지 이동)
+  import active from "svelte-spa-router/active";
+  import Logo from "~/components/Logo.svelte";
 
+  // path: 사용될 경로 패턴(현재 URL과 일치 여부 확인).
   const menus = [
-    { href: '/', name: 'Search' },
-    { href: '/movie/tt4520988', name: 'Movie', path: '/movie/*' },
-    { href: '/about', name: 'About', path: /^\/about/ },
+    { href: "/", name: "Search" },
+    { href: "/movie/tt4520988", name: "Movie", path: "/movie/*" },
+    { href: "/about", name: "About", path: /^\/about/ },
   ];
 </script>
 
@@ -23,7 +24,11 @@
   </nav>
   <div
     class="user"
-    on:click={(event) => push('/about?name=Netlify&email=hello@netlify.com&image=%2Fassets%2Fnetlify.png')}>
+    on:click={(event) =>
+      push(
+        "/about?name=Netlify&email=hello@netlify.com&image=%2Fassets%2Fnetlify.png",
+      )}
+  >
     <img src="/assets/svelte.png" alt="User" />
   </div>
 </header>
