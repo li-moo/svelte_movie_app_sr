@@ -1,16 +1,16 @@
 <script>
-  import { link } from 'svelte-spa-router';
-  import Loader from '~/components/Loader.svelte';
+  import { link } from "svelte-spa-router";
+  import Loader from "~/components/Loader.svelte";
 
   let imageLoading = true;
   export let movie;
 
-  if (movie.Poster === 'N/A') {
+  if (movie.Poster === "N/A") {
     imageLoading = false;
   } else {
-    const img = document.createElement('img');
+    const img = document.createElement("img");
     img.src = movie.Poster;
-    img.addEventListener('load', () => {
+    img.addEventListener("load", () => {
       imageLoading = false;
     });
   }
@@ -20,8 +20,9 @@
   {#if imageLoading}
     <Loader scale="0.5" absolute={true} />
   {/if}
+  <!-- 영화 포스터가 없는 경우를 처리하기 위한 조건 -->
   <div class="poster" style="background-image: url({movie.Poster});">
-    {#if movie.Poster === 'N/A'}
+    {#if movie.Poster === "N/A"}
       OMDbAPI<br />
       N/A
     {/if}
@@ -47,7 +48,7 @@
     position: relative;
     &:hover {
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -66,7 +67,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Oswald', sans-serif;
+      font-family: "Oswald", sans-serif;
       color: $color--white-5;
       font-size: 20px;
       text-align: center;
@@ -87,7 +88,7 @@
         transform: scale(2);
         filter: blur(5px);
         &::after {
-          content: '';
+          content: "";
           background-color: $color--black-50;
           position: absolute;
           top: 0;
@@ -104,7 +105,7 @@
       .title {
         position: relative;
         font-size: 15px;
-        font-family: 'Oswald', sans-serif;
+        font-family: "Oswald", sans-serif;
         color: $color--white;
         overflow: hidden;
         text-overflow: ellipsis;

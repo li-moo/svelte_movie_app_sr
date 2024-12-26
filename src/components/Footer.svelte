@@ -3,7 +3,10 @@
     <a href="https://github.com/HeropCode/Svelte-Movie-app">GitHub Repo</a>
   </div>
   <div>
-    <a href="https://heropy.blog/2019/09/29/svelte"> @{new Date().getFullYear()} HEROPY</a>
+    <!-- 현재 연도를 반환 -->
+    <a href="https://heropy.blog/2019/09/29/svelte">
+      @{new Date().getFullYear()} HEROPY</a
+    >
   </div>
 </footer>
 
